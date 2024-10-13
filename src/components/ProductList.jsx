@@ -1,9 +1,7 @@
 import React from 'react';
 import { bedRoomItems, diningRoomItems, livingRoomItems } from '../utils/data';
-import trophy from "../assets/trophy.webp"
-import warranty from "../assets/warranty.webp"
-import support from "../assets/support.webp"
-import Package from "../assets/package.webp"
+
+import { Link } from 'react-router-dom';
 function ProductList() {
   const combinedDataset = [...bedRoomItems, ...livingRoomItems, ...diningRoomItems];
 
@@ -43,43 +41,9 @@ function ProductList() {
 
       
     </div>
-    <div className='flex justify-center mt-6 mb-8 '>  <button className="w-60 p-2 h-10 bg-white text-[#c28c2b] border border-[#c28c2b]  transition duration-300 hover:bg-[#c28c2b] hover:text-white">Show More</button></div>
+    <Link to='/shop' className='flex justify-center mt-6 mb-8 '>  <button className="w-60 p-2 h-10 bg-white text-[#c28c2b] border border-[#c28c2b]  transition duration-300 hover:bg-[#c28c2b] hover:text-white">Show More</button></Link>
     
-    <div className='bg-[#fbf1e7] p-16 pb-12 mb-8'>
-  <div className='grid grid-cols-2 md:grid-cols-4 gap-8'>
-    <div className='flex items-center'>
-      <img src={trophy} alt="" className='w-12 h-12' />
-      <div className='flex flex-col ml-4'>
-        <span className='text-[16px] text-black font-extrabold'>High Quality</span>
-        <span className='text-[16px] text-[#5e7da3]'>Crafted from top materials</span>
-      </div>
-    </div>
-
-    <div className='flex items-center'>
-      <img src={warranty} alt="" className='w-12 h-12' />
-      <div className='flex flex-col ml-4'>
-        <span className='text-[16px] text-black font-extrabold'>Warranty Protection</span>
-        <span className='text-[16px] text-[#5e7da3]'>Over 2 years</span>
-      </div>
-    </div>
-
-    <div className='flex items-center'>
-      <img src={Package} alt="" className='w-12 h-12' />
-      <div className='flex flex-col ml-4'>
-        <span className='text-[16px] font-extrabold text-black'>Free Shipping</span>
-        <span className='text-[16px] text-[#5e7da3]'>Order over 150 $</span>
-      </div>
-    </div>
-
-    <div className='flex items-center'>
-      <img src={support} alt="" className='w-12 h-12' />
-      <div className='flex flex-col ml-4'>
-        <span className='text-[16px] font-extrabold text-black'>24/7 Support</span>
-        <span className='text-[16px] text-[#5e7da3]'>Dedicated support</span>
-      </div>
-    </div>
-  </div>
-</div>
+ 
 
 
 
