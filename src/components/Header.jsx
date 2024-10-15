@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { CiSearch , CiHeart} from "react-icons/ci";
+import { CiSearch, CiHeart } from "react-icons/ci";
 import { BsCart2 } from "react-icons/bs";
-import { FaTimes ,FaBars } from "react-icons/fa";
+import { FaTimes, FaBars } from "react-icons/fa";
 import logo from "../assets/furniro.webp";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -11,14 +11,13 @@ import { auth } from "../utils/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../context/CartContext";
-import { Badge } from 'antd'
+import { Badge } from 'antd';
 
 const Header = () => {
   const { user, setuser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-const {cartItems} = useContext(CartContext)
-console.log(cartItems);
+  const { cartItems } = useContext(CartContext);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -49,7 +48,6 @@ console.log(cartItems);
               {isOpen ? <FaTimes size={20} className="text-black" /> : <FaBars size={20} className="text-black" />}
             </button>
             <img src={logo} alt="Logo" className="w-8 h-8" />
-            
             <span className="text-gray-800 font-extrabold text-2xl">Furniro</span>
           </div>
         </Link>
@@ -64,15 +62,18 @@ console.log(cartItems);
 
         <div className="flex items-center mr-4 space-x-4">
           <button className="text-black hover:text-gray-600">
-            <CiSearch   size={20} />
+            <CiSearch size={20} />
           </button>
           <button className="text-black hover:text-gray-600">
-          <CiHeart  size={20} />
+            <CiHeart size={20} />
           </button>
           <div className="text-2xl cursor-pointer">
-      <Link to={'/cart'}><Badge count={cartItems.length}>  <BsCart2 style={{  fontSize: '20' }} /></Badge></Link>
-      
-      </div>
+            <Link to={'/cart'}>
+              <Badge count={cartItems.length}>
+                <BsCart2 style={{ fontSize: '20' }} />
+              </Badge>
+            </Link>
+          </div>
         </div>
 
         <div className="flex space-x-4 ml-4">
@@ -86,7 +87,7 @@ console.log(cartItems);
           ) : (
             <Link
               to="/signin"
-              className="w-32 p-2 ml-6 h-10 bg-[#c28c2b] text-white border border-[#c28c2b] transition duration-300  flex items-center justify-center rounded-md"
+              className="w-32 p-2 ml-6 h-10 bg-[#c28c2b] text-white border border-[#c28c2b] transition duration-300 flex items-center justify-center rounded-md"
             >
               Sign In
             </Link>
@@ -94,14 +95,15 @@ console.log(cartItems);
         </div>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-white p-4 space-y-2">
-          <Link to="/" className="block text-gray-800">Home</Link>
-          <Link to="/shop" className="block text-gray-800">Shop</Link>
-          <Link to="/about" className="block text-gray-800">About</Link>
-          <Link to="/contact" className="block text-gray-800">Contact</Link>
-        </div>
-      )}
+      {/* Sliding Menu */}
+      <div className={`absolute top-16 left-0 w-full bg-white bg-opacity-75 shadow-lg transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+  <div className="md:hidden p-4 space-y-2">
+    <Link to="/" className="block text-gray-800">Home</Link>
+    <Link to="/shop" className="block text-gray-800">Shop</Link>
+    <Link to="/about" className="block text-gray-800">About</Link>
+    <Link to="/contact" className="block text-gray-800">Contact</Link>
+  </div>
+</div>
     </nav>
   );
 };

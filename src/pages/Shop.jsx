@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import { bedRoomItems, diningRoomItems, livingRoomItems } from "../utils/data";
 import shopBgPic from "../assets/bg2.webp";
 import filter from "../assets/filter.png";
-
 import Footer from "../components/Footer";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
+
 function Shop() {
   const combinedDataset = [
     ...bedRoomItems,
@@ -23,17 +24,14 @@ function Shop() {
       ? combinedDataset
       : combinedDataset.filter((item) => item.category === selectedCategory);
 
-
-      const {cartItems, isItemAdded,addItemsToCart}= useContext(CartContext)
+  const { cartItems, isItemAdded, addItemsToCart } = useContext(CartContext);
+  
   return (
     <>
       <div className="relative w-full h-[80vh]">
         <img src={shopBgPic} alt="" className="w-full h-full object-cover" />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-black">
-          {" "}
-          {/* Shop heading black kar di */}
-          <h1 className="text-4xl font-bold">Shop</h1>{" "}
-          {/* Shop heading size 36px */}
+          <h1 className="text-4xl font-bold">Shop</h1>
           <nav className="flex mt-4" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
               <li className="inline-flex items-center">
@@ -76,16 +74,14 @@ function Shop() {
 
       <div className="flex justify-between items-center bg-[#fbf1e7] py-12 px-8">
         <div className="flex gap-4 items-center">
-          <img src={filter} alt="" className="w-5 h-5" />{" "}
-          
-          <h1 className="text-xl">Filter</h1> 
+          <img src={filter} alt="" className="w-5 h-5" />
+          <h1 className="text-xl">Filter</h1>
           <h1 className="text-xl">|</h1>
-          <h1 className="text-xl">Showing 1-30 of 30 results</h1>{" "}
-      
+          <h1 className="text-xl">Showing 1-30 of 30 results</h1>
         </div>
 
         <div className="flex items-center gap-3">
-          <h1 className="text-xl">Sort By:</h1> 
+          <h1 className="text-xl">Sort By:</h1>
           <select
             value={selectedCategory}
             onChange={handleOnCategory}
@@ -100,43 +96,51 @@ function Shop() {
         </div>
       </div>
 
-      <h1 className="text-3xl text-center font-extrabold  mt-20 mb-8">
+      <h1 className="text-3xl text-center font-extrabold mt-20 mb-8">
         Our Products
       </h1>
       <div className="flex flex-wrap justify-center mt-6 mb-6">
-        {filteredProducts.map((item) => (
-          <div
-            key={item.id}
-            className="flex flex-col items-center m-4 w-60 h-auto"
-          >
-            <div className="w-full h-80 border rounded shadow">
-              <div className="h-1/2 overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="flex flex-col justify-center items-center bg-[#f4f5f7] h-1/2 p-2">
-                <h2 className="text-lg text-[#3a3a3a] font-extrabold">
-                  {item.title}
-                </h2>
-                <p className="text-[#8e758b]">{item.category}</p>
-                <p className="text-lg text-[#3a3a3a] font-extrabold">
-                  ${item.price}
-                </p>
-              </div>
+  {filteredProducts.map((item) => (
+    <div className="flex flex-col items-center m-4 w-72 h-auto relative group">
+      <Link to={`/shop/${item.id}`} className="flex flex-col items-center w-full h-full">
+        <div className="flex flex-col w-full h-full border rounded shadow overflow-hidden">
+          <div className="w-full h-1/2 relative">
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full h-full object-cover transition-all duration-300 group-hover:blur-sm"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <Link to={`/shop/${item.id}`}>
+                <button className="text-white font-bold py-2 px-4 border border-white rounded">
+                  View Product
+                </button>
+              </Link>
             </div>
-
-            <button onClick={()=> addItemsToCart(item)} className="w-full bg-white text-[#c28c2b] font-bold py-2 mt-2 text-center border border-gray-300">
-              {isItemAdded(item.id)?`Added to Cart (${isItemAdded(item.id).quantity})`: `Add to Cart` }
-            </button>
           </div>
-        ))}
-      </div>
 
-      
+          <div className="flex flex-col justify-center items-center bg-[#f4f5f7] h-1/2 p-2">
+            <h2 className="text-lg text-[#3a3a3a] font-extrabold">
+              {item.title}
+            </h2>
+            <p className="text-[#8e758b]">{item.category}</p>
+            <p className="text-lg text-[#3a3a3a] font-extrabold">
+              ${item.price}
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      <button
+        onClick={() => addItemsToCart(item)}
+        className="w-full bg-white text-[#c28c2b] font-bold py-2 mt-2 border border-gray-300"
+      >
+        {isItemAdded(item.id) ? `Added to Cart (${isItemAdded(item.id).quantity})` : `Add to Cart`}
+      </button>
+    </div>
+  ))}
+</div>
+
 
       <Footer />
     </>

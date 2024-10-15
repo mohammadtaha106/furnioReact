@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../utils/firebase';
 
 function SignIn() {
@@ -108,9 +108,9 @@ function SignIn() {
           </form>
           <p className="text-center text-gray-500 mt-6">
             Don't have an account?{' '}
-            <a href="/signup" className="text-[#c28c2b] hover:underline">
+            <Link to="/signup" className="text-[#c28c2b] hover:underline">
               Sign Up
-            </a>
+            </Link>
           </p>
         </div>
       </section>
