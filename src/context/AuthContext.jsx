@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, onAuthStateChanged } from "../utils/firebase";
-
+import {Spinner} from "@nextui-org/react";
 export const AuthContext = createContext()
 
 function AuthContextProvider({children}){

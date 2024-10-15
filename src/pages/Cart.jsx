@@ -1,11 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { FaTrashAlt } from "react-icons/fa"; 
 import shopBgPic from "../assets/bg2.webp";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "@nextui-org/react"; 
 
 function Cart() {
+  const [loading, setLoading] = useState(true); 
+
   const {
     cartItems,
     decreaseItemToCart,
@@ -14,20 +17,19 @@ function Cart() {
     setcartItems,
   } = useContext(CartContext);
 
+  console.log('cartitems',cartItems);
+  
   const navigate = useNavigate();
 
- 
-  useEffect(() => {
-    const savedCartItems = JSON.parse(localStorage.getItem("cartItems"));
-    if (savedCartItems) {
-      setcartItems(savedCartItems); 
-    }
-  }, [setcartItems]); 
+  
 
-
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center w-full h-screen">
+        <Spinner color="warning" size="lg" />
+      </div>
+    );
+  }
 
   if (cartItems.length === 0) {
     return <div className="text-center mt-28">Your cart is empty.</div>; 
@@ -39,7 +41,11 @@ function Cart() {
   );
 
   const handleOnCheckout = () => {
-    navigate("/checkout"); // Navigate to checkout page
+    setLoading(true); // Set loading when navigating to checkout
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/checkout");
+    }, 2000); 
   };
 
   return (
