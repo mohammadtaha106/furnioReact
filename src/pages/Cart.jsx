@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Spinner } from "@nextui-org/react"; 
 
 function Cart() {
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(false); 
 
   const {
     cartItems,

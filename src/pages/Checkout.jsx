@@ -6,10 +6,19 @@ import Footer from "../components/Footer";
 import { useState } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 function Checkout() {
+  const navigate = useNavigate();
   const { cartItems, setcartItems } = useContext(CartContext);
+
+
+  const { user } = useContext(AuthContext);
+const {isLogin} = user
+console.log('isLogin', isLogin);
+
 
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem("cartItems"));
@@ -32,15 +41,19 @@ function Checkout() {
     formState: { errors },
   } = useForm();
 
+  console.log("user", user);
+
   const onSubmit = (data) => {
     console.log("Form Data: ", data);
-    if (data) {
-      downloadPDF();
-      console.log("Data submitted successfully!"); 
-      
-    } else {
-      console.log("Data submission unsuccessful."); 
+    if (!isLogin) {
+      toast.warn("Please sign in to proceed with checkout.");
+        setTimeout(() => {
+            navigate("/signin"); 
+        }, 1000);
+      return;
     }
+    downloadPDF();
+    console.log("Data submitted successfully!");
   };
 
   const [loader, setLoader] = useState(false);
@@ -119,6 +132,7 @@ function Checkout() {
             <div className="flex flex-col">
               <label className="mb-2">First Name</label>
               <input
+              defaultValue="Mohammad" 
                 className="border border-gray-300 p-4 rounded-2xl"
                 {...register("firstName", {
                   required: "First name is required",
@@ -137,6 +151,7 @@ function Checkout() {
             <div className="flex flex-col">
               <label className="mb-2">Last Name</label>
               <input
+              defaultValue="Taha" 
                 className="border border-gray-300 p-4 rounded-2xl" // Updated here
                 {...register("lastName", {
                   required: "Last name is required",
@@ -155,6 +170,7 @@ function Checkout() {
             <div className="col-span-2 flex flex-col">
               <label className="mb-2">Company Name (Optional)</label>
               <input
+              defaultValue="ABC" 
                 className="border border-gray-300 p-4 rounded-2xl"
                 {...register("companyName")}
               />
@@ -189,6 +205,7 @@ function Checkout() {
             <div className="col-span-2 flex flex-col">
               <label className="mb-2">Street Address</label>
               <input
+              defaultValue="ABC" 
                 className="border border-gray-300 p-4 rounded-2xl"
                 {...register("streetAddress", {
                   required: "Street address is required",
@@ -205,6 +222,7 @@ function Checkout() {
             <div className="flex flex-col">
               <label className="mb-2">Town / City</label>
               <input
+              defaultValue="Karachi" 
                 className="border border-gray-300 p-4 rounded-2xl" // Updated here
                 {...register("city", {
                   required: "City is required",
@@ -219,6 +237,7 @@ function Checkout() {
             <div className="flex flex-col">
               <label className="mb-2">Province</label>
               <input
+              defaultValue="Sindh" 
                 className="border border-gray-300 p-4 rounded-2xl" // Updated here
                 {...register("province", {
                   required: "Province is required",
@@ -233,6 +252,7 @@ function Checkout() {
             <div className="flex flex-col">
               <label className="mb-2">Zip Code</label>
               <input
+              defaultValue="78523" 
                 className="border border-gray-300 p-4 rounded-2xl" // Updated here
                 {...register("zipCode", {
                   required: "Zip code is required",
@@ -251,6 +271,7 @@ function Checkout() {
             <div className="flex flex-col">
               <label className="mb-2">Phone</label>
               <input
+              defaultValue="03333344556" 
                 className="border border-gray-300 p-4 rounded-2xl" // Updated here
                 {...register("phone", {
                   required: "Phone number is required",
@@ -269,6 +290,7 @@ function Checkout() {
             <div className="flex flex-col">
               <label className="mb-2">Email Address</label>
               <input
+              defaultValue="abc@gmail.com" 
                 className="border border-gray-300 p-4 rounded-2xl" // Updated here
                 type="email"
                 {...register("email", {
@@ -322,7 +344,6 @@ function Checkout() {
               )}
             </div>
 
-          
             <div className="mt-2  pt-4">
               <div className="flex justify-between items-center mb-2 ">
                 <div>
@@ -350,16 +371,13 @@ function Checkout() {
           <button
             type="submit"
             className="text-black border border-black w-full py-3 rounded-2xl transition font-bold text-lg hover:bg-black hover:text-white hover:border-transparent"
-            onClick={
-              handleSubmit(onSubmit)
-             
-            }
+            onClick={handleSubmit(onSubmit)}
             disabled={loader !== false}
           >
             Place Order
           </button>
         </div>
-        <ToastContainer position="top-center" /> 
+        <ToastContainer position="top-center" />
       </div>
 
       <Footer />
