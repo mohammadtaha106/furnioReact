@@ -3,6 +3,7 @@ import bgPic from "../assets/download.webp";
 import Dining from "../assets/dining.webp";
 import Living from "../assets/living.webp";
 import Bedroom from "../assets/bedroom.webp";
+import { Link } from 'react-router-dom';
 
 function Container() {
   return (
@@ -24,7 +25,7 @@ function Container() {
           <span className="text-[16px] mb-3">
             Each piece is crafted to enhance your style and comfort.
           </span>
-          <button className="bg-[#c28c2b] text-white py-2 px-4 mt-4">Buy Now</button>
+         <button className="bg-[#c28c2b] text-white py-2 px-4 mt-4">Buy Now</button>
         </div>
       </div>
 

@@ -196,7 +196,7 @@ export const diningRoomItems = [
     title: "Table Runner",
     description: "A beautiful table runner that enhances your dining table's appearance, adding a touch of elegance and sophistication to your dining setup.",
     price: 3500,
-    image: "https://i.pinimg.com/236x/4e/72/14/4e7214e5f30de5ff3c3a84bbfc1fa073.jpg",
+    image: "https://i.pinimg.com/564x/5a/dd/28/5add28308b2a4d1763aaa5f9998f2003.jpg",
     category: "dining"
   },
   {
@@ -204,7 +204,7 @@ export const diningRoomItems = [
     title: "Dinnerware Set",
     description: "An elegant dinnerware set crafted for a complete dining experience, ensuring every meal is served beautifully and making every occasion special.",
     price: 15000,
-    image: "https://i.pinimg.com/236x/9e/a1/b7/9ea1b7e67f88f5d420ee8f54d2cdd7b7.jpg",
+    image: "https://i.pinimg.com/enabled_hi/564x/63/e9/e2/63e9e23745730fdf44116b6594b65ee8.jpg",
     category: "dining"
   },
   {
@@ -212,7 +212,7 @@ export const diningRoomItems = [
     title: "Wine Rack",
     description: "A stylish wine rack designed to store your favorite bottles, combining functionality and elegance to enhance your dining room decor.",
     price: 8000,
-    image: "https://i.pinimg.com/236x/2d/8c/cd/2d8ccdfb344784bd43a761e55a1076b4.jpg",
+    image: "https://i.pinimg.com/564x/eb/a9/6a/eba96a7469cd88dc5cace9d5ece03926.jpg",
     category: "dining"
   },
   {
@@ -220,7 +220,7 @@ export const diningRoomItems = [
     title: "Chandelier",
     description: "A luxurious chandelier that adds a touch of glamour and brightness to your dining room, creating a warm and inviting atmosphere for dining.",
     price: 60000,
-    image: "https://i.pinimg.com/236x/c6/a2/d9/c6a2d96b3d8a9b7cb0236a4a548a69b7.jpg",
+    image: "https://i.pinimg.com/564x/ff/5c/90/ff5c909022462865bb8edef81af9922b.jpg",
     category: "dining"
   },
   {
@@ -228,7 +228,7 @@ export const diningRoomItems = [
     title: "Dining Bench",
     description: "A comfortable dining bench that complements your dining table, providing additional seating while enhancing the overall style of your dining area.",
     price: 18000,
-    image: "https://i.pinimg.com/236x/2d/3f/6e/2d3f6e807097f3cb0f16d1b03c3f2710.jpg",
+    image: "https://i.pinimg.com/564x/f2/b8/f3/f2b8f31a0bf1e65503cb28f75276fbba.jpg",
     category: "dining"
   },
   {
@@ -236,7 +236,7 @@ export const diningRoomItems = [
     title: "Salt and Pepper Shakers",
     description: "Elegant salt and pepper shakers that add a functional yet stylish touch to your dining table, making every meal flavorful and enjoyable.",
     price: 1200,
-    image: "https://i.pinimg.com/236x/0a/eb/a6/0aeba616957af773a4ebf81b0b74313a.jpg",
+    image: "https://i.pinimg.com/enabled_hi/564x/1a/fe/89/1afe89645002293a61557e41c9cbd0b5.jpg",
     category: "dining"
   },
   {
@@ -244,7 +244,7 @@ export const diningRoomItems = [
     title: "Napkin Holder",
     description: "A stylish napkin holder for your dining table that keeps napkins organized and adds a decorative touch to your dining setup.",
     price: 1000,
-    image: "https://i.pinimg.com/236x/9c/2f/c6/9c2fc6e37aa3d9fbf47bb71aafc8d835.jpg",
+    image: "https://i.pinimg.com/564x/a3/b6/3c/a3b63c7da163bbfc13fe47fccfedd9fd.jpg",
     category: "dining"
   }
 ];
